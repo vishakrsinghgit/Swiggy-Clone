@@ -67,7 +67,7 @@ const Body = ()=>{
             <input 
             type="text" 
             className="focus:bg-green-100 p-1 m-1 " 
-            placeholder="Search" 
+            placeholder="Name" 
             value={user.name} 
             onChange={(e)=>{
                 return setUser({
@@ -80,7 +80,7 @@ const Body = ()=>{
              <input 
             type="text" 
             className="focus:bg-green-100 p-1 m-1 " 
-            placeholder="Search" 
+            placeholder="Email" 
             value={user.email} 
             onChange={(e)=>{
                 return setUser({

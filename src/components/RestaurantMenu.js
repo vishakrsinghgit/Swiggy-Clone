@@ -3,6 +3,8 @@ import {useParams} from "react-router-dom"
 import { IMG_CDN_URL } from "../Constant";
 import Shimmer from "./Shimmer";
 import useRestaurant ,{useRestaurant1} from "../utils/useRestaurant";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 function RestaurantMenu() {
     // const params = useParams();
     // const [restaurant, setRestaurant] = useState(null); 
@@ -25,7 +27,11 @@ function RestaurantMenu() {
     const params = useParams();
      const restaurant = useRestaurant(params.id);
     const restaurantMenu = useRestaurant1(params.id);
+    const dispatch = useDispatch();
     
+    const handleAddItems =(item)=>{
+      dispatch(addItem(item));
+    };
 
     // if(!restaurantMenu && !restaurantMenu){
     //   console.log("initial render");
@@ -35,7 +41,7 @@ function RestaurantMenu() {
 
     
   return (!restaurantMenu || !restaurant)? <Shimmer/>: (
-    <div className="menu">
+    <div className="flex">
     <div>
         <h1>Restaurant id: {params.id}</h1>
         <h2>{restaurant.name}</h2>
@@ -45,7 +51,10 @@ function RestaurantMenu() {
         <h3>{restaurant.avgRating}</h3>
         <h3>{restaurant.costForTwoMessage}</h3>
     </div>
-    <div>
+    {/* <div>
+      <button className="p-2 m-5 bg-green-100" onClick={()=> handleAddItems()}>Add Items</button>
+    </div> */}
+    <div className="p-5">
       <h1>Menu</h1>
       <ul>
         {(arr =[],
@@ -58,7 +67,8 @@ function RestaurantMenu() {
             // let menu = item?.card?.card?.itemCards;
             item?.card?.card?.itemCards.map((menu) => {
               // console.log(menu?.card?.info?.name);
-              arr.push(menu?.card?.info?.name);
+              //arr.push(menu?.card?.info?.name);
+              arr.push(menu?.card?.info);
               // return <li>{menu?.card?.info?.name}</li>
               
               
@@ -67,7 +77,7 @@ function RestaurantMenu() {
           }
           
           
-        }),arr.map((li,index) =>(<li key={index}>{li}</li>)))}
+        }),arr.map((li,index) =>(<li key={index}>{li.name}-<button className="p-1 m-1 bg-green-100" onClick={()=>handleAddItems(li)}>Add</button></li>)))}
       </ul>
 
     </div>

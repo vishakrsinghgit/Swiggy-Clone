@@ -12,6 +12,9 @@ import Profile from "./components/Profile";
 import ProfileClass from "./components/ProfileClass";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
+import {Provider} from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Cart";
 // import Instamart from "./components/Instamart";
 /*
 const heading = React.createElement(
@@ -107,6 +110,7 @@ const AppLayout =() =>{
         }
     );
     return(
+        <Provider store= {store}>
         <UserContext.Provider value={
             {
                 user: user,
@@ -117,6 +121,7 @@ const AppLayout =() =>{
         <Outlet />
         <Footer/>
         </UserContext.Provider>
+        </Provider>
     );
 };
 
@@ -164,6 +169,10 @@ const appRouter = createBrowserRouter([
                     <Instamart/>
                 </Suspense>
                 )
+            },
+            {
+                path: "/cart",
+                element : <Cart/>
             }
         ]
     },

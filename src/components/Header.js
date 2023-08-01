@@ -3,6 +3,7 @@ import logo from "../assets/img/swiggy.png";
 import {Link} from "react-router-dom";
 import useOnline from "../utils/useOnline"
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 const LoggedInUser =() => {
     //API call to check authentication
     return false;
@@ -25,6 +26,8 @@ export const Header= () =>{
     const isOnline = useOnline();
     const [isloggedIn,setIsloggedIn] = useState(false);
     const {user} = useContext(UserContext);
+    const cartItems = useSelector(store => store.cart.items);
+    console.log(cartItems);
     return(
         <div className="flex justify-between bg-blue-50 sm:bg-pink-50 shadow-lg">
             <Title/>
@@ -34,7 +37,7 @@ export const Header= () =>{
                     <li ><Link to="/about" className="px-2">About</Link></li>
                     <li><Link to="/contact" className="px-2">Contact</Link></li>
                     <li><Link to="/instamart" className="px-2">Instamart</Link></li>
-                    <li>Cart</li>
+                    <li><Link to="/cart" className="px-2">Cart-{cartItems.length}items</Link></li>
                 </ul>
 
             </div>
