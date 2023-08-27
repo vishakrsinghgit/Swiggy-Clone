@@ -684,6 +684,6 @@ exports.default = About;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./Profile":"h0rtF","react-router-dom":"9xmpe","./ProfileClass":"aeEz8","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../utils/UserContext":"c5vgB"}]},["3EtMM","1xC6H"], null, "parcelRequire3454")
+},{"react/jsx-dev-runtime":"iTorj","./Profile":"h0rtF","react-router-dom":"9xmpe","./ProfileClass":"aeEz8","react":"21dqq","../utils/UserContext":"c5vgB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["3EtMM","1xC6H"], null, "parcelRequire3454")
 
 //# sourceMappingURL=About.84db8bad.js.map
