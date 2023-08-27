@@ -15,6 +15,7 @@ import UserContext from "./utils/UserContext";
 import {Provider} from "react-redux";
 import store from "./utils/store";
 import Cart from "./components/Cart";
+import Form from "./components/LoginForm";
 // import Instamart from "./components/Instamart";
 /*
 const heading = React.createElement(
@@ -105,76 +106,111 @@ const About = lazy(()=> import("./components/About"));
 const AppLayout =() =>{
     const[user, setUser] =useState(
         {
-            name: "Ram Ram Vishal",
-            email: "vishal@gmail.com"
+            name: "Vishal Kr Singh"
         }
     );
-    return(
-        <Provider store= {store}>
-        <UserContext.Provider value={
-            {
-                user: user,
-                setUser: setUser
+
+    const formFields = [
+        { name: 'username', label: 'Username', type: 'text' },
+        { name: 'password', label: 'Password', type: 'password' },
+    ];
+    
+    const handleSubmit = (formData) => {
+        const username = {name:formData.username,
+       
+        };
+        console.log(username);
+        // Perform form submission logic here
+        setLoggedIn(true);
+        setUser(username);
+        console.log('Form Data:', formData);
+    };
+
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    
+        
+    return (
+        <div>{
+            loggedIn ? (<Provider store= {store}>
+                <UserContext.Provider value={
+                    {
+                        user: user,
+                        setUser: setUser
+                    }
+                }>
+                <Header logIn={loggedIn} setlogIn={setLoggedIn} />
+                <Outlet />
+                <Footer/>
+                </UserContext.Provider>
+                </Provider>):(<Form fields={formFields} onSubmit={handleSubmit}/>)
+            
+            
             }
-        }>
-        <Header/>
-        <Outlet />
-        <Footer/>
-        </UserContext.Provider>
-        </Provider>
+        
+        </div>
     );
 };
 
 
 const appRouter = createBrowserRouter([
     {
-        path: "/",
-        element : <AppLayout/>,
-        errorElement: <Error/>,
-        children: [
-            {
-                path: "/",
-                element : <Body user = {{
-                    name: "Ram Ram Vishal",
-                    email: "vishal@gmail.com"
-                }}/>
-            },
-            {
-                path: "/about",
-                element : (
-                <Suspense fallback ={<h1>Loading....</h1>}>
-                    <About/>
-                </Suspense>
-                ),
-                children: [
-                    {
-                        path: "profile", // parentPath/{path} => localhost:1234/about/profile "/ slash means from root localhost:1234"
-                        element : <ProfileClass/>,
 
-                    }
-                ]
-            },
-            {
-                path: "/contact",
-                element : <Contact/>
-            },
-            {
-                path: "/restaurant/:id",
-                element : <RestaurantMenu/>
-            },
-            {
-                path: "/instamart",
-                element : (
-                <Suspense fallback= {<Shimmer/>}>
-                    <Instamart/>
-                </Suspense>
-                )
-            },
-            {
-                path: "/cart",
-                element : <Cart/>
-            }
-        ]
+        // path:"/",
+        // element: <Form fields={formFields} onSubmit={handleSubmit} />,
+        // errorElement: <Error/>,
+        // children: [
+        //     {
+            path: "/",
+            element :<AppLayout/>,
+            errorElement: <Error/>,
+            children: [
+                {
+                    path: "/",
+                    element : <Body user = {{
+                        name: "Ram Ram Vishal",
+                        email: "vishal@gmail.com"
+                    }}/>
+                },
+                {
+                    path: "/about",
+                    element : (
+                    <Suspense fallback ={<h1>Loading....</h1>}>
+                        <About/>
+                    </Suspense>
+                    ),
+                    children: [
+                        {
+                            path: "profile", // parentPath/{path} => localhost:1234/about/profile "/ slash means from root localhost:1234"
+                            element : <ProfileClass/>,
+
+                        }
+                    ]
+                },
+                {
+                    path: "/contact",
+                    element : <Contact/>
+                },
+                {
+                    path: "/restaurant/:id",
+                    element : <RestaurantMenu/>
+                },
+                {
+                    path: "/instamart",
+                    element : (
+                    <Suspense fallback= {<Shimmer/>}>
+                        <Instamart/>
+                    </Suspense>
+                    )
+                },
+                {
+                    path: "/cart",
+                    element : <Cart/>
+                }
+            ]
+        // }
+        // ]
+        
     },
     
 ]);

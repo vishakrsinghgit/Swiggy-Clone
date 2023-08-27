@@ -32,15 +32,15 @@ class About extends React.Component {
   render() {
     // console.log("parent-render");
     return (
-      <div>
-          <h1>About Us Page</h1>
+      <div >
+          <h1 className="font-bold text-xl pl-10 pt-10 pb-10">About Us Page</h1>
           <UserContext.Consumer>
-            {({user})=> <h4 className="font-bold text-xl p-10">{user.name}-{user.email}</h4>}
+            {({user})=> <h4 className="font-bold text-xl pl-10">{user.name}</h4>}
           </UserContext.Consumer>
-          <p>
+          <p className="pl-10">
               This is Vishal's effort to learn react
           </p>
-          <ProfileFunctionalComponent name= {"First Child"}/>
+          {/* <ProfileFunctionalComponent name= {"First Child"}/> */}
           {/* <ProfileClass name= {"First Child"}/> */}
           {/* <ProfileClass name= {"Second Child"}/> */}
           {/* <Outlet/> */}

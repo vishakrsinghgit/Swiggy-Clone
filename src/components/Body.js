@@ -34,7 +34,7 @@ const Body = ()=>{
         setallRestaurants((json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants));
         // setfilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
          setfilteredRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
     const isOnline = useOnline();
     if(!isOnline){
@@ -64,7 +64,7 @@ const Body = ()=>{
                     setfilteredRestaurants(data);
                 }
             }>Search</button>
-            <input 
+            {/* <input 
             type="text" 
             className="focus:bg-green-100 p-1 m-1 " 
             placeholder="Name" 
@@ -89,7 +89,7 @@ const Body = ()=>{
                    
                 });
             }}
-            />
+            /> */}
         </div>
         
         <div className="flex flex-wrap">
